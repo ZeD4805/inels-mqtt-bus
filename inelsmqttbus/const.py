@@ -3,6 +3,14 @@ from __future__ import annotations
 from typing import Final
 from enum import IntEnum, Enum
 
+class Platform(Enum):
+    """Entity platforms"""
+    SWITCH = "switch"
+    SENSOR = "sensor"
+    LIGHT = "light"
+    COVER = "cover"
+    CLIMATE = "climate"
+    BUTTON = "button"
 
 MQTT_DISCOVER_TOPIC = "inels/status/#"
 
@@ -37,6 +45,12 @@ DEVICE_TYPE_DICT = {
     "103" : GSB3_90SX,
 }
 
+DEVICE_PLATFORM_DICT : dict[str, list[Platform]] = {
+    "100" : [Platform.SWITCH, Platform.SENSOR],
+    "101" : [Platform.LIGHT, Platform.SENSOR],
+    "102" : [Platform.SENSOR], #and buttons
+    "103" : [Platform.SENSOR], #and buttons
+}
 
 # MQTT/INELS CONSTANTS
 MQTT_TRANSPORTS = {"tcp", "websockets"}

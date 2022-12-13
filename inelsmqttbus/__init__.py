@@ -10,7 +10,7 @@ from typing import Any, Callable
 import paho.mqtt.client as mqtt
 
 from .const import (
-        MQTT_CLIENT_ID,
+    MQTT_CLIENT_ID,
     MQTT_HOST,
     MQTT_PASSWORD,
     MQTT_PORT,
@@ -372,7 +372,7 @@ class InelsMqtt:
         # will be doing till messages will rising
         if self.__discovered.get(msg.topic) is not None:
             _LOGGER.info("First time getting topic %s", msg.topic)
-            #self.__discover_start_time = datetime.now()
+            self.__discover_start_time = datetime.now()
 
         # pass only those who belongs to known device types
         fragments = msg.topic.split("/")

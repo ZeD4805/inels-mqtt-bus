@@ -315,19 +315,7 @@ class InelsMqtt:
         """Subscribe to selected topic. This method is primary used for
         subscribing with wild-card (#,+).
         When wild-card is used, then all topic matching this will
-        be subscribed and collected therir payloads and topic representation.
-
-        e.g.: prefix/status/groundfloor/# - will match all groundfloor topics
-                    prefix/status/groundfloor/kitchen/temp - yes
-                    prefix/status/groundfloor/livingroom/temp - yes
-                    prefix/status/firstfloor/bathroom/temp - no
-                    prefix/status/groundfloor/kitchen/fridge/temp - yes
-
-              prefix/status/groundfoor/+/temp - will get all groundfloor temp
-                    prefix/status/groundfloor/kitchen/temp - yes
-                    prefix/status/groundfloor/kitchen/lamp - no
-                    prefix/status/groundfloor/livingroom/temp - yes
-                    prefix/status/groundfloor/kitchen/fridge/temp - no
+        be subscribed and collected their payloads and topic representation.
 
         Returns:
             dict[str, str]: Dictionary of all topics with their payloads

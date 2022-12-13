@@ -23,7 +23,7 @@ class InelsDiscovery(object):
         """
         return self.__devices
 
-    def discovery(self) -> list[Device]:
+    def discovery(self) -> None:
         """Discover and create device list
 
         Returns:
@@ -31,12 +31,12 @@ class InelsDiscovery(object):
         """
         devs = self.__mqtt.discovery_all()
         
-        devices = []
+        devices : list[Device] = []
         
         for item in devs:
             devices.append(Device(item, devs[item]))
         
-        return devices
+        self.__devices = devices
             
             
         

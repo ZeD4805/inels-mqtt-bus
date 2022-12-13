@@ -1,4 +1,5 @@
 
+from inelsmqttbus import InelsMqtt
 from .const import (
     Platform,
     TOPIC_FRAGMENTS,
@@ -16,10 +17,13 @@ class Device(object):
     """
     def __init__(
         self,
+        mqtt: InelsMqtt,
         state_topic: str,
         status_value: str,
     ) -> None:
         fragments = state_topic.split("/")
+
+        self.__mqtt: InelsMqtt = mqtt
 
         self.__platforms : list[Platform] = DEVICE_PLATFORM_DICT[
             fragments[TOPIC_FRAGMENTS[FRAGMENT_DEVICE_TYPE]]
@@ -32,6 +36,11 @@ class Device(object):
         ]
         self.__state_topic: str = state_topic
         self.__status_value: str = status_value
+
+    @property
+    def mqtt(self) -> InelsMqtt:
+        """Returns mqtt client"""
+        return self.__mqtt
 
     @property
     def platforms(self) -> list[Platform]:

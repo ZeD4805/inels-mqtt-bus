@@ -40,12 +40,11 @@ class InelsDiscovery(object):
             list[Device]: status topic -> List of Device object
         """
         devs = self.__mqtt.discovery_all()
-        #TODO fix
         
         devices : list[Device] = []
         
         for item in devs:
-            devices.append(Device(item, devs[item]))
+            devices.append(Device(self.mqtt, item, devs[item]))
         
         self.__devices = devices
             

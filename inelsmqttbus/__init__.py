@@ -39,7 +39,7 @@ class InelsMqtt:
     
     def __init__(
         self,
-        config: dict[str, Any]
+        config: dict[str, Any],
     ) -> None:
         """InelsMqtt wrapper initialization:
         

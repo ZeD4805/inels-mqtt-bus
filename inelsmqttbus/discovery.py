@@ -1,16 +1,18 @@
 """Discovery class handle find all devices in the broker and create devices."""
 import logging
+from typing import Any
 
-from . import InelsMqtt
-from .device import Device
+
+from inelsmqttbus import InelsMqtt
+from inelsmqttbus.device import Device
 
 _LOGGER = logging.getLogger(__name__)
 
 class InelsDiscovery(object):
-    """Handles device discovery"""    
+    """Handles device discovery"""
     def __init__(self, mqtt: InelsMqtt) -> None:
         """Initializes inels mqtt discovery"""
-        self.__mqtt: InelsMqtt = mqtt,
+        self.__mqtt: InelsMqtt = mqtt
         self.__devices: list[Device] = []
         
     @property
@@ -31,15 +33,13 @@ class InelsDiscovery(object):
         """
         return self.__mqtt
     
-    def discovery(self) -> None:
+    def discovery(self) -> dict[str, list[Any]]:
         """Discover and create device list
 
         Returns:
             list[Device]: status topic -> List of Device object
         """
-        A = InelsMqtt(self.mqtt)
-        devs = A.discovery_all()
-        #devs = self.__mqtt.discovery_all()
+        devs = self.__mqtt.discovery_all()
         #TODO fix
         
         devices : list[Device] = []
